@@ -30,12 +30,10 @@ const ko: Record<string, string> = {
   "That's a wrap on the Brisbane EXPO!": "브리즈번 박람회가 성황리에 마무리되었습니다!",
   "A big thank you to our attendees, schools, and partners who made the event a success.":
     "행사를 성공적으로 이끌어 주신 참가자, 학교, 파트너 여러분께 깊이 감사드립니다.",
-  "13 photos from the night": "현장 사진 13장",
   "Brisbane Expo": "브리즈번 박람회",
   "Melbourne EXPO Recap": "멜버른 박람회 현장 스케치",
   "That's a wrap on the Melbourne EXPO! A big thank you to our attendees, schools, and partners who made the event a success.":
     "멜버른 박람회가 성황리에 마무리되었습니다! 행사를 성공적으로 이끌어 주신 참가자, 학교, 파트너 여러분께 깊이 감사드립니다.",
-  "7 photos from the night": "현장 사진 7장",
   "Melbourne Expo": "멜버른 박람회",
   "28 November 2026": "2026년 11월 28일",
   "21 May 2026": "2026년 5월 21일",
@@ -212,6 +210,7 @@ const ko: Record<string, string> = {
   "Contact": "연락처",
   "Privacy Policy": "개인정보처리방침",
   "Back to top": "맨 위로",
+  "Back": "뒤로",
 };
 
 export default ko;

@@ -109,7 +109,6 @@ export const dates = {
         "That's a wrap on the Brisbane EXPO!",
         "A big thank you to our attendees, schools, and partners who made the event a success.",
       ],
-      photosLabel: "13 photos from the night",
       photoAlt: "Brisbane Expo",
       photos: [
         "/images/brisbane-recap/bne-01.jpg",
@@ -143,7 +142,6 @@ export const dates = {
       text: [
         "That's a wrap on the Melbourne EXPO! A big thank you to our attendees, schools, and partners who made the event a success.",
       ],
-      photosLabel: "7 photos from the night",
       photoAlt: "Melbourne Expo",
       photos: [
         "/images/melbourne-recap/mel1.jpg",
@@ -473,4 +471,5 @@ export const ui = {
   contact: "Contact",
   privacy: "Privacy Policy",
   backToTop: "Back to top",
+  back: "Back",
 };

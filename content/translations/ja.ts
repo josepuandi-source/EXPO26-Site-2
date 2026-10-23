@@ -30,12 +30,10 @@ const ja: Record<string, string> = {
   "That's a wrap on the Brisbane EXPO!": "ブリスベンEXPOは無事終了しました!",
   "A big thank you to our attendees, schools, and partners who made the event a success.":
     "イベントを成功に導いてくださったご来場者、学校、パートナーの皆様に心より感謝申し上げます。",
-  "13 photos from the night": "当日の写真 13枚",
   "Brisbane Expo": "ブリスベンEXPO",
   "Melbourne EXPO Recap": "メルボルンEXPOレポート",
   "That's a wrap on the Melbourne EXPO! A big thank you to our attendees, schools, and partners who made the event a success.":
     "メルボルンEXPOは無事終了しました!イベントを成功に導いてくださったご来場者、学校、パートナーの皆様に心より感謝申し上げます。",
-  "7 photos from the night": "当日の写真 7枚",
   "Melbourne Expo": "メルボルンEXPO",
   "28 November 2026": "2026年11月28日",
   "21 May 2026": "2026年5月21日",
@@ -212,6 +210,7 @@ const ja: Record<string, string> = {
   "Contact": "お問い合わせ",
   "Privacy Policy": "プライバシーポリシー",
   "Back to top": "トップへ戻る",
+  "Back": "戻る",
 };
 
 export default ja;

@@ -8,6 +8,7 @@ import { useContent } from "./ContentProvider";
 import type { dates } from "@/content/site";
 import { Container, Reveal, SectionHeader, HighlightTitle } from "./ui";
 import { ImageIcon, PinIcon } from "./icons";
+import { PosterViewer, useOpenPoster } from "./PosterViewer";
 
 type Recap = (typeof dates.recaps)[number];
 type Event = (typeof dates.events)[number];
@@ -47,14 +48,11 @@ function RecapCard({ recap }: { recap: Recap }) {
   return (
     <Reveal>
       <div className="mb-5 rounded-2xl bg-white p-6 shadow-[0_6px_22px_rgba(18,17,15,.07)] md:p-8">
-        <div className="mb-5 flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
-          <div>
-            <h3 className="font-heading text-2xl font-semibold text-navy-900 md:text-[28px]">
-              <HighlightTitle text={recap.title} />
-            </h3>
-            <p className="mt-1 max-w-xl text-[15px] text-neutral-700">{recap.text.join(" ")}</p>
-          </div>
-          <p className="text-[13px] font-semibold text-primary-700">{recap.photosLabel}</p>
+        <div className="mb-5">
+          <h3 className="font-heading text-2xl font-semibold text-navy-900 md:text-[28px]">
+            <HighlightTitle text={recap.title} />
+          </h3>
+          <p className="mt-1 max-w-xl text-[15px] text-neutral-700">{recap.text.join(" ")}</p>
         </div>
         <PhotoCarousel photos={recap.photos} alt={recap.photoAlt} />
       </div>
@@ -65,6 +63,8 @@ function RecapCard({ recap }: { recap: Recap }) {
 /** Big teal card for the next event, with its poster shown like a pinned photo. */
 function FeaturedEvent({ e }: { e: Event }) {
   const { ui } = useContent();
+  const openPoster = useOpenPoster();
+  const show = () => e.poster && openPoster({ src: e.poster, alt: `${e.city} ${ui.posterAlt}` });
   return (
     <div className="relative flex min-h-[360px] overflow-hidden rounded-2xl bg-bar text-white">
       <div aria-hidden="true" className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-white/10 blur-2xl" />
@@ -80,26 +80,25 @@ function FeaturedEvent({ e }: { e: Event }) {
             {e.location}
           </p>
           {e.poster && (
-            <a
-              href={e.poster}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={show}
               className="mt-2 inline-flex min-h-10 items-center gap-2 rounded-full bg-white px-5 font-heading text-sm font-medium tracking-[0.06em] text-primary-700 hover:bg-primary-100"
             >
               <ImageIcon className="h-4 w-4" />
               {ui.viewPoster}
-            </a>
+            </button>
           )}
         </div>
         {e.poster && (
-          <a
-            href={e.poster}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={show}
+            aria-label={`${ui.viewPoster}: ${e.city}`}
             className="mx-auto block w-44 rotate-3 rounded-xl bg-white p-2 shadow-[0_10px_24px_rgba(18,17,15,.25)] transition-transform duration-300 hover:rotate-0 hover:scale-[1.03] md:w-52"
           >
             <Image src={e.poster} alt={`${e.city} ${ui.posterAlt}`} width={400} height={566} className="h-auto w-full rounded-md" />
-          </a>
+          </button>
         )}
       </div>
     </div>
@@ -109,6 +108,7 @@ function FeaturedEvent({ e }: { e: Event }) {
 /** Compact row with a number badge, like the U&I site's event list. */
 function EventRow({ e }: { e: Event }) {
   const { ui } = useContent();
+  const openPoster = useOpenPoster();
   const body = (
     <>
       <div className="rounded-[10px] bg-primary-100 py-2 text-center font-heading leading-[1.1] text-primary-700">
@@ -126,9 +126,13 @@ function EventRow({ e }: { e: Event }) {
   const cls =
     "grid grid-cols-[64px_1fr] items-center gap-4 rounded-[14px] border border-neutral-200 bg-white px-4 py-3.5 text-navy-900 transition-colors";
   return e.poster ? (
-    <a href={e.poster} target="_blank" rel="noopener noreferrer" className={`${cls} hover:border-primary-500`}>
+    <button
+      type="button"
+      onClick={() => openPoster({ src: e.poster!, alt: `${e.city} ${ui.posterAlt}` })}
+      className={`${cls} w-full text-left hover:border-primary-500`}
+    >
       {body}
-    </a>
+    </button>
   ) : (
     <div className={cls}>{body}</div>
   );
@@ -139,24 +143,26 @@ export default function Dates() {
   const [featured, ...rest] = dates.events;
   return (
     <section id="dates" className="bg-[linear-gradient(0deg,rgba(0,156,145,.05)_0%,#FFFDFA_100%)] py-20 md:py-[88px]">
-      <Container>
-        <Reveal>
-          <SectionHeader title={dates.title} subtitle={dates.subtitle} align="left" />
-        </Reveal>
-        <Reveal>
-          <div className="mb-14 grid grid-cols-1 gap-4 lg:grid-cols-[1.2fr_1fr]">
-            {featured && <FeaturedEvent e={featured} />}
-            <div className="flex flex-col gap-3">
-              {rest.map((e) => (
-                <EventRow key={e.number} e={e} />
-              ))}
+      <PosterViewer>
+        <Container>
+          <Reveal>
+            <SectionHeader title={dates.title} subtitle={dates.subtitle} align="left" />
+          </Reveal>
+          <Reveal>
+            <div className="mb-14 grid grid-cols-1 gap-4 lg:grid-cols-[1.2fr_1fr]">
+              {featured && <FeaturedEvent e={featured} />}
+              <div className="flex flex-col gap-3">
+                {rest.map((e) => (
+                  <EventRow key={e.number} e={e} />
+                ))}
+              </div>
             </div>
-          </div>
-        </Reveal>
-        {dates.recaps.map((r) => (
-          <RecapCard key={r.title} recap={r} />
-        ))}
-      </Container>
+          </Reveal>
+          {dates.recaps.map((r) => (
+            <RecapCard key={r.title} recap={r} />
+          ))}
+        </Container>
+      </PosterViewer>
     </section>
   );
 }

@@ -39,6 +39,7 @@ export const ClipboardIcon = (p: P) => (
   />
 );
 export const ArrowRightIcon = (p: P) => <Outline {...p} sw={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />;
+export const ArrowLeftIcon = (p: P) => <Outline {...p} sw={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />;
 export const ArrowUpIcon = (p: P) => <Outline {...p} sw={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />;
 export const GlobeIcon = (p: P) => (
   <Outline

@@ -30,12 +30,10 @@ const th: Record<string, string> = {
   "That's a wrap on the Brisbane EXPO!": "งานนิทรรศการที่บริสเบนจบลงอย่างสวยงาม!",
   "A big thank you to our attendees, schools, and partners who made the event a success.":
     "ขอขอบคุณผู้เข้าร่วมงาน สถาบันการศึกษา และพันธมิตรทุกท่านที่ทำให้งานนี้ประสบความสำเร็จ",
-  "13 photos from the night": "ภาพบรรยากาศ 13 ภาพ",
   "Brisbane Expo": "งานนิทรรศการที่บริสเบน",
   "Melbourne EXPO Recap": "ภาพบรรยากาศงานที่เมลเบิร์น",
   "That's a wrap on the Melbourne EXPO! A big thank you to our attendees, schools, and partners who made the event a success.":
     "งานนิทรรศการที่เมลเบิร์นจบลงอย่างสวยงาม! ขอขอบคุณผู้เข้าร่วมงาน สถาบันการศึกษา และพันธมิตรทุกท่านที่ทำให้งานนี้ประสบความสำเร็จ",
-  "7 photos from the night": "ภาพบรรยากาศ 7 ภาพ",
   "Melbourne Expo": "งานนิทรรศการที่เมลเบิร์น",
   "28 November 2026": "28 พฤศจิกายน 2026",
   "21 May 2026": "21 พฤษภาคม 2026",
@@ -212,6 +210,7 @@ const th: Record<string, string> = {
   "Contact": "ติดต่อ",
   "Privacy Policy": "นโยบายความเป็นส่วนตัว",
   "Back to top": "กลับขึ้นด้านบน",
+  "Back": "ย้อนกลับ",
 };
 
 export default th;

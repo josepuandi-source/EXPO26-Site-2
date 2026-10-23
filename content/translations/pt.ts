@@ -30,12 +30,10 @@ const pt: Record<string, string> = {
   "That's a wrap on the Brisbane EXPO!": "E assim encerramos a EXPO Brisbane!",
   "A big thank you to our attendees, schools, and partners who made the event a success.":
     "Muito obrigado aos participantes, escolas e parceiros que fizeram do evento um sucesso.",
-  "13 photos from the night": "13 fotos do evento",
   "Brisbane Expo": "EXPO Brisbane",
   "Melbourne EXPO Recap": "Retrospectiva da EXPO Melbourne",
   "That's a wrap on the Melbourne EXPO! A big thank you to our attendees, schools, and partners who made the event a success.":
     "E assim encerramos a EXPO Melbourne! Muito obrigado aos participantes, escolas e parceiros que fizeram do evento um sucesso.",
-  "7 photos from the night": "7 fotos do evento",
   "Melbourne Expo": "EXPO Melbourne",
   "28 November 2026": "28 de novembro de 2026",
   "21 May 2026": "21 de maio de 2026",
@@ -206,6 +204,7 @@ const pt: Record<string, string> = {
   "Contact": "Contato",
   "Privacy Policy": "Política de privacidade",
   "Back to top": "Voltar ao topo",
+  "Back": "Voltar",
 };
 
 export default pt;
