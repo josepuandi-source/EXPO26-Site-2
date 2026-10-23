@@ -108,8 +108,8 @@ const es: Record<string, string> = {
   // About
   "About **U&I Global**": "Sobre **U&I Global**",
   "Trusted guidance since 1997": "Orientación confiable desde 1997",
-  "Since 1997, U&I Global has helped students pursue international education and achieve their study abroad goals. As we approach our **30th Anniversary in 2028**, we continue to provide trusted guidance and personalized support throughout every step of the student journey.":
-    "Desde 1997, U&I Global ha ayudado a estudiantes a acceder a la educación internacional y a cumplir sus metas de estudiar en el extranjero. A medida que nos acercamos a nuestro **30.º aniversario en 2028**, seguimos ofreciendo orientación confiable y apoyo personalizado en cada etapa del camino del estudiante.",
+  "Since 1997, U&I Global has helped students pursue international education and achieve their study abroad goals. As we approach our **30th Anniversary in 2027**, we continue to provide trusted guidance and personalized support throughout every step of the student journey.":
+    "Desde 1997, U&I Global ha ayudado a estudiantes a acceder a la educación internacional y a cumplir sus metas de estudiar en el extranjero. A medida que nos acercamos a nuestro **30.º aniversario en 2027**, seguimos ofreciendo orientación confiable y apoyo personalizado en cada etapa del camino del estudiante.",
   "As a **100% wholly owned and operated** organization, our teams across multiple countries work together to help students choose the right course, institution, and pathway for their future.":
     "Como organización **100% propia y de gestión directa**, nuestros equipos en varios países trabajan juntos para ayudar a los estudiantes a elegir el curso, la institución y el camino adecuados para su futuro.",
   "Through our global network, U&I Global continues to connect students with quality Australian education opportunities.":

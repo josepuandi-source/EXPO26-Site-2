@@ -112,8 +112,8 @@ const ko: Record<string, string> = {
   // About
   "About **U&I Global**": "**U&I Global** 소개",
   "Trusted guidance since 1997": "1997년부터 이어온 믿을 수 있는 안내",
-  "Since 1997, U&I Global has helped students pursue international education and achieve their study abroad goals. As we approach our **30th Anniversary in 2028**, we continue to provide trusted guidance and personalized support throughout every step of the student journey.":
-    "U&I Global은 1997년부터 학생들이 해외 교육의 꿈을 이루고 유학 목표를 달성할 수 있도록 도와왔습니다. **2028년 창립 30주년**을 앞두고, 학생 여정의 모든 단계에서 신뢰할 수 있는 안내와 맞춤형 지원을 계속 제공하고 있습니다.",
+  "Since 1997, U&I Global has helped students pursue international education and achieve their study abroad goals. As we approach our **30th Anniversary in 2027**, we continue to provide trusted guidance and personalized support throughout every step of the student journey.":
+    "U&I Global은 1997년부터 학생들이 해외 교육의 꿈을 이루고 유학 목표를 달성할 수 있도록 도와왔습니다. **2027년 창립 30주년**을 앞두고, 학생 여정의 모든 단계에서 신뢰할 수 있는 안내와 맞춤형 지원을 계속 제공하고 있습니다.",
   "As a **100% wholly owned and operated** organization, our teams across multiple countries work together to help students choose the right course, institution, and pathway for their future.":
     "**100% 직영**으로 운영되는 기관으로서, 여러 국가의 팀이 함께 협력하여 학생들이 미래에 맞는 과정, 교육기관, 진로를 선택할 수 있도록 돕고 있습니다.",
   "Through our global network, U&I Global continues to connect students with quality Australian education opportunities.":

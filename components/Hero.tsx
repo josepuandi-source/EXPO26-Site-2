@@ -5,6 +5,7 @@ import { useSyncExternalStore } from "react";
 import { motion } from "framer-motion";
 import { useContent } from "./ContentProvider";
 import { Button } from "./ui";
+import ExpoLogo from "./ExpoLogo";
 
 const reducedMotionQuery = "(prefers-reduced-motion: reduce)";
 const subscribeReducedMotion = (cb: () => void) => {
@@ -41,7 +42,7 @@ export default function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        <Image src={hero.logo.src} alt={hero.logo.alt} width={320} height={191} priority className="h-auto w-60 md:w-[300px]" />
+        <ExpoLogo alt={hero.logo.alt} className="w-60 md:w-[300px]" />
         <span className="font-heading text-sm font-medium uppercase tracking-[0.22em] text-primary-300">{hero.eyebrow}</span>
         <h1 className="font-heading text-[clamp(38px,6vw,64px)] font-semibold leading-[1.08]">
           {hero.titleLead} <span className="text-primary-300">{hero.titleHighlight}</span>

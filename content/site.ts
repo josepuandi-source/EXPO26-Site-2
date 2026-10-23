@@ -56,7 +56,7 @@ export const nav = {
 // Hero
 // ---------------------------------------------------------------------------
 export const hero = {
-  logo: { src: "/header.png", alt: "Australia Study Migration Expo 2026" },
+  logo: { src: "/images/expo-logo/full.png", alt: "Australia Study Migration Expo 2026" },
   /** Looping, muted background video (key moments from the Brisbane EXPO film) and the still shown before it loads. */
   video: "/videos/hero-loop.mp4",
   background: "/images/hero-poster.jpg",
@@ -144,13 +144,25 @@ export const dates = {
       ],
       photoAlt: "Melbourne Expo",
       photos: [
-        "/images/melbourne-recap/mel1.jpg",
-        "/images/melbourne-recap/mel2.jpg",
-        "/images/melbourne-recap/mel3.jpg",
-        "/images/melbourne-recap/mel4.jpg",
-        "/images/melbourne-recap/mel5.jpg",
-        "/images/melbourne-recap/mel6.jpg",
-        "/images/melbourne-recap/mel7.jpg",
+        "/images/melbourne-recap/mel-01.jpg",
+        "/images/melbourne-recap/mel-02.jpg",
+        "/images/melbourne-recap/mel-03.jpg",
+        "/images/melbourne-recap/mel-04.jpg",
+        "/images/melbourne-recap/mel-05.jpg",
+        "/images/melbourne-recap/mel-06.jpg",
+        "/images/melbourne-recap/mel-07.jpg",
+        "/images/melbourne-recap/mel-08.jpg",
+        "/images/melbourne-recap/mel-09.jpg",
+        "/images/melbourne-recap/mel-10.jpg",
+        "/images/melbourne-recap/mel-11.jpg",
+        "/images/melbourne-recap/mel-12.jpg",
+        "/images/melbourne-recap/mel-13.jpg",
+        "/images/melbourne-recap/mel-14.jpg",
+        "/images/melbourne-recap/mel-15.jpg",
+        "/images/melbourne-recap/mel-16.jpg",
+        "/images/melbourne-recap/mel-17.jpg",
+        "/images/melbourne-recap/mel-18.jpg",
+        "/images/melbourne-recap/mel-19.jpg",
       ],
       giveaway: null,
       promos: [],
@@ -284,7 +296,7 @@ export const about = {
   subtitle: "Trusted guidance since 1997",
   /** Use **double asterisks** to bold-highlight a phrase. */
   paragraphs: [
-    "Since 1997, U&I Global has helped students pursue international education and achieve their study abroad goals. As we approach our **30th Anniversary in 2028**, we continue to provide trusted guidance and personalized support throughout every step of the student journey.",
+    "Since 1997, U&I Global has helped students pursue international education and achieve their study abroad goals. As we approach our **30th Anniversary in 2027**, we continue to provide trusted guidance and personalized support throughout every step of the student journey.",
     "As a **100% wholly owned and operated** organization, our teams across multiple countries work together to help students choose the right course, institution, and pathway for their future.",
     "Through our global network, U&I Global continues to connect students with quality Australian education opportunities.",
   ],
