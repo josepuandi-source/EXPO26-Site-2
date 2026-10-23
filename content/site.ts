@@ -158,13 +158,17 @@ export const dates = {
     },
   ],
 
-  /** Upcoming event cards. `poster` is optional — when set, the card expands to show it. */
+  /**
+   * Upcoming events, in date order. The first one is shown as the large featured card.
+   * `when` (YYYY-MM-DD) drives the calendar badge; leave it out for "Coming soon".
+   * `poster` is optional — when set, "View Poster" opens it over the page.
+   */
   events: [
-    { number: "03", date: "28 November 2026", city: "BANGKOK", location: "Bangkok", poster: "/images/expo-poster-bangkok-nov.jpg" },
-    { number: "04", date: "21 May 2026", city: "GOLD COAST", location: "Gold Coast" },
-    { number: "05", date: "June 2026", city: "KOREA", location: "Korea" },
-    { number: "06", date: "5 December 2026", city: "DAVAO", location: "Davao, Philippines" },
-  ] as { number: string; date: string; city: string; location: string; poster?: string }[],
+    { when: "2026-11-28", date: "28 November 2026", city: "BANGKOK", location: "Bangkok", poster: "/images/expo-poster-bangkok-nov.jpg" },
+    { when: "2026-12-05", date: "5 December 2026", city: "DAVAO", location: "Davao, Philippines" },
+    { when: "2026-12-17", date: "17 December 2026", city: "GOLD COAST", location: "Gold Coast" },
+    { date: "Coming soon", city: "KOREA", location: "Korea" },
+  ] as { when?: string; date: string; city: string; location: string; poster?: string }[],
 };
 
 // ---------------------------------------------------------------------------
@@ -461,7 +465,7 @@ export const ui = {
   openMenu: "Open menu",
   closeMenu: "Close menu",
   language: "Language",
-  eventNo: "Event Nº",
+  comingSoon: "Coming soon",
   benefitNo: "Benefit Nº",
   viewPoster: "View Poster",
   posterAlt: "Expo Poster",

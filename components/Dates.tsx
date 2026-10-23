@@ -4,14 +4,43 @@ import Image from "next/image";
 import { useSyncExternalStore } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import AutoScroll from "embla-carousel-auto-scroll";
-import { useContent } from "./ContentProvider";
+import { useContent, useLang } from "./ContentProvider";
 import type { dates } from "@/content/site";
 import { Container, Reveal, SectionHeader, HighlightTitle } from "./ui";
-import { ImageIcon, PinIcon } from "./icons";
+import { CalendarIcon, ImageIcon, PinIcon } from "./icons";
 import { PosterViewer, useOpenPoster } from "./PosterViewer";
 
 type Recap = (typeof dates.recaps)[number];
 type Event = (typeof dates.events)[number];
+
+/** Tear-off calendar page: month on a coloured strip, big day number below. No date → blank calendar. */
+function CalendarBadge({ when, onTeal = false }: { when?: string; onTeal?: boolean }) {
+  const lang = useLang();
+  const { ui } = useContent();
+  const strip = onTeal ? "bg-navy-900 text-white" : "bg-primary-700 text-white";
+  const frame = `w-16 shrink-0 overflow-hidden rounded-[10px] bg-white text-center font-heading leading-none ${onTeal ? "shadow-[0_6px_16px_rgba(18,17,15,.25)]" : "border border-primary-100"}`;
+  if (!when) {
+    return (
+      <div className={frame} role="img" aria-label={ui.comingSoon}>
+        <div className={`h-[22px] ${strip}`} />
+        <div className="grid h-[42px] place-items-center text-primary-500">
+          <CalendarIcon className="h-6 w-6" />
+        </div>
+      </div>
+    );
+  }
+  // Fixed UTC so the server and every visitor's browser show the same day.
+  const d = new Date(`${when}T00:00:00Z`);
+  const short = new Intl.DateTimeFormat(lang, { month: "short", timeZone: "UTC" }).format(d);
+  // "dez." -> "DEZ" for Spanish/Portuguese; Thai keeps its stops ("พ.ย.").
+  const month = lang === "es" || lang === "pt" ? short.replace(/\.$/, "") : short;
+  return (
+    <div className={frame} aria-hidden="true">
+      <div className={`py-1 text-[11px] font-medium uppercase tracking-[0.08em] ${strip}`}>{month}</div>
+      <div className="py-1.5 text-[26px] font-semibold text-primary-700">{d.getUTCDate()}</div>
+    </div>
+  );
+}
 
 const reducedMotionQuery = "(prefers-reduced-motion: reduce)";
 const subscribeReducedMotion = (cb: () => void) => {
@@ -70,9 +99,7 @@ function FeaturedEvent({ e }: { e: Event }) {
       <div aria-hidden="true" className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-white/10 blur-2xl" />
       <div className="relative grid w-full grid-cols-1 items-center gap-6 p-7 sm:grid-cols-[1fr_auto] md:p-8">
         <div className="flex flex-col items-start gap-3">
-          <span className="text-[13px] uppercase tracking-[0.14em] text-white/85">
-            {ui.eventNo} {e.number}
-          </span>
+          <CalendarBadge when={e.when} onTeal />
           <h3 className="font-heading text-4xl font-semibold md:text-5xl">{e.city}</h3>
           <p className="font-heading text-xl font-light">{e.date}</p>
           <p className="flex items-center gap-1.5 text-[15px] text-white/85">
@@ -111,10 +138,7 @@ function EventRow({ e }: { e: Event }) {
   const openPoster = useOpenPoster();
   const body = (
     <>
-      <div className="rounded-[10px] bg-primary-100 py-2 text-center font-heading leading-[1.1] text-primary-700">
-        <span className="block text-[11px] uppercase tracking-[0.08em]">{ui.eventNo}</span>
-        <b className="block text-[22px] font-semibold">{e.number}</b>
-      </div>
+      <CalendarBadge when={e.when} />
       <div className="min-w-0">
         <h4 className="font-heading text-[17px] font-medium text-navy-900">{e.city}</h4>
         <p className="text-sm text-navy-300">
@@ -153,7 +177,7 @@ export default function Dates() {
               {featured && <FeaturedEvent e={featured} />}
               <div className="flex flex-col gap-3">
                 {rest.map((e) => (
-                  <EventRow key={e.number} e={e} />
+                  <EventRow key={e.city} e={e} />
                 ))}
               </div>
             </div>
