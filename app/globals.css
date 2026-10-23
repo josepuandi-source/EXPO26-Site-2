@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: var(--font-plex), "Noto Sans KR", system-ui, sans-serif;
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-kanit), "Noto Sans KR", "Noto Sans Thai", system-ui, sans-serif;
+    font-weight: 600;
+    line-height: 1.15;
+  }
+  body {
+    @apply bg-cream text-neutral-900 antialiased;
+    font-family: var(--font-plex), "Noto Sans KR", system-ui, sans-serif;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  ::after,
+  ::before {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Infinite photo strip (copied from the original inline styles) */
+@keyframes scroll-right {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.infinite-scroll {
+  animation: scroll-right 30s linear infinite;
+}
+.scroll-container {
+  mask: linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%);
+  -webkit-mask: linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%);
+}
+.image-item {
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+.image-item:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+/* Korean: wrap between words, not mid-word (CJK text otherwise breaks anywhere). */
+html:lang(ko) {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
