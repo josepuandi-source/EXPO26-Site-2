@@ -55,7 +55,6 @@ function Langs({ onDark = true }: { onDark?: boolean }) {
 
 export default function Header() {
   const { nav, ui, footer } = useContent();
-  const lang = useLang();
   const [open, setOpen] = useState(false);
 
   return (
@@ -81,7 +80,7 @@ export default function Header() {
       <header className="sticky top-0 z-50 bg-bar shadow-[0_2px_10px_rgba(0,0,0,.12)]">
         <Container>
           <div className="flex min-h-[72px] items-center justify-between gap-5">
-            <a href={langHref(lang)} className="shrink-0">
+            <a href="https://uandiedu.com" className="shrink-0">
               <Wordmark />
             </a>
             <nav className="hidden md:flex items-center gap-1">
