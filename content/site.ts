@@ -111,19 +111,20 @@ export const dates = {
       ],
       photoAlt: "Brisbane Expo",
       photos: [
-        "/images/brisbane-recap/bne-01.jpg",
-        "/images/brisbane-recap/bne-02.jpg",
-        "/images/brisbane-recap/bne-03.jpg",
-        "/images/brisbane-recap/bne-04.jpg",
-        "/images/brisbane-recap/bne-05.jpg",
-        "/images/brisbane-recap/bne-06.jpg",
-        "/images/brisbane-recap/bne-07.jpg",
-        "/images/brisbane-recap/bne-08.jpg",
-        "/images/brisbane-recap/bne-09.jpg",
-        "/images/brisbane-recap/bne-10.jpg",
-        "/images/brisbane-recap/bne-11.jpg",
-        "/images/brisbane-recap/bne-12.jpg",
-        "/images/brisbane-recap/bne-13.jpg",
+        "/images/brisbane-recap/bne-mix-01.jpg",
+        "/images/brisbane-recap/bne-mix-02.jpg",
+        "/images/brisbane-recap/bne-mix-03.jpg",
+        "/images/brisbane-recap/bne-mix-04.jpg",
+        "/images/brisbane-recap/bne-mix-05.jpg",
+        "/images/brisbane-recap/bne-mix-06.jpg",
+        "/images/brisbane-recap/bne-mix-07.jpg",
+        "/images/brisbane-recap/bne-mix-08.jpg",
+        "/images/brisbane-recap/bne-mix-09.jpg",
+        "/images/brisbane-recap/bne-mix-10.jpg",
+        "/images/brisbane-recap/bne-mix-11.jpg",
+        "/images/brisbane-recap/bne-mix-12.jpg",
+        "/images/brisbane-recap/bne-mix-13.jpg",
+        "/images/brisbane-recap/bne-mix-14.jpg",
       ],
       /** Optional giveaway block (set to null to hide). */
       giveaway: null as null | {
@@ -144,25 +145,20 @@ export const dates = {
       ],
       photoAlt: "Melbourne Expo",
       photos: [
-        "/images/melbourne-recap/mel-01.jpg",
-        "/images/melbourne-recap/mel-02.jpg",
-        "/images/melbourne-recap/mel-03.jpg",
-        "/images/melbourne-recap/mel-04.jpg",
-        "/images/melbourne-recap/mel-05.jpg",
-        "/images/melbourne-recap/mel-06.jpg",
-        "/images/melbourne-recap/mel-07.jpg",
-        "/images/melbourne-recap/mel-08.jpg",
-        "/images/melbourne-recap/mel-09.jpg",
-        "/images/melbourne-recap/mel-10.jpg",
-        "/images/melbourne-recap/mel-11.jpg",
-        "/images/melbourne-recap/mel-12.jpg",
-        "/images/melbourne-recap/mel-13.jpg",
-        "/images/melbourne-recap/mel-14.jpg",
-        "/images/melbourne-recap/mel-15.jpg",
-        "/images/melbourne-recap/mel-16.jpg",
-        "/images/melbourne-recap/mel-17.jpg",
-        "/images/melbourne-recap/mel-18.jpg",
-        "/images/melbourne-recap/mel-19.jpg",
+        "/images/melbourne-recap/mel-mix-01.jpg",
+        "/images/melbourne-recap/mel-mix-02.jpg",
+        "/images/melbourne-recap/mel-mix-03.jpg",
+        "/images/melbourne-recap/mel-mix-04.jpg",
+        "/images/melbourne-recap/mel-mix-05.jpg",
+        "/images/melbourne-recap/mel-mix-06.jpg",
+        "/images/melbourne-recap/mel-mix-07.jpg",
+        "/images/melbourne-recap/mel-mix-08.jpg",
+        "/images/melbourne-recap/mel-mix-09.jpg",
+        "/images/melbourne-recap/mel-mix-10.jpg",
+        "/images/melbourne-recap/mel-mix-11.jpg",
+        "/images/melbourne-recap/mel-mix-12.jpg",
+        "/images/melbourne-recap/mel-mix-13.jpg",
+        "/images/melbourne-recap/mel-mix-14.jpg",
       ],
       giveaway: null,
       promos: [],
@@ -174,13 +170,15 @@ export const dates = {
    * Upcoming events, in date order. The first one is shown as the large featured card.
    * `when` (YYYY-MM-DD) drives the calendar badge; leave it out for "Coming soon".
    * `poster` is optional — when set, "View Poster" opens it over the page.
+   * `past: true` greys an event out as completed (listed last, not clickable).
    */
   events: [
     { when: "2026-11-28", date: "28 November 2026", city: "BANGKOK", location: "Bangkok", poster: "/images/expo-poster-bangkok-nov.jpg" },
     { when: "2026-12-05", date: "5 December 2026", city: "DAVAO", location: "Davao, Philippines" },
     { when: "2026-12-17", date: "17 December 2026", city: "GOLD COAST", location: "Gold Coast" },
-    { date: "Coming soon", city: "KOREA", location: "Korea" },
-  ] as { when?: string; date: string; city: string; location: string; poster?: string }[],
+    { when: "2026-10-15", date: "15 October 2026", city: "BRISBANE", location: "Brisbane", past: true },
+    { when: "2026-10-01", date: "1 October 2026", city: "MELBOURNE", location: "Melbourne", past: true },
+  ] as { when?: string; date: string; city: string; location: string; poster?: string; past?: boolean }[],
 };
 
 // ---------------------------------------------------------------------------
@@ -471,6 +469,14 @@ export const footer = {
 export const tel = (p: string) => "tel:" + p.replace(/[^+\d]/g, "");
 
 // ---------------------------------------------------------------------------
+// Sister sites — flag links in the header to the single-language EXPO sites
+// ---------------------------------------------------------------------------
+export const sisterSites = [
+  { flag: "th", label: "ภาษาไทย", title: "EXPO 2026 Bangkok — Thai website", href: "https://expo26-site-th.vercel.app", lang: "th" },
+  { flag: "ph", label: "Davao", title: "EXPO 2026 Davao website", href: "https://expo26-site-davao.vercel.app", lang: "en" },
+] as { flag: "th" | "ph"; label: string; title: string; href: string; lang: string }[];
+
+// ---------------------------------------------------------------------------
 // Small interface labels used across components
 // ---------------------------------------------------------------------------
 export const ui = {
@@ -478,6 +484,7 @@ export const ui = {
   closeMenu: "Close menu",
   language: "Language",
   comingSoon: "Coming soon",
+  completed: "Completed",
   benefitNo: "Benefit Nº",
   viewPoster: "View Poster",
   posterAlt: "Expo Poster",

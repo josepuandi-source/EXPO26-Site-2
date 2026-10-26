@@ -1,4 +1,4 @@
-# U&I Global — Australia Study & Migration EXPO 2026
+# U&I Global — Australia Study & Migration EXPO 2026 (main site)
 
 Rebuild of https://expo26.uandiedu.com/ — Next.js 14 (App Router) + Tailwind CSS 3 + framer-motion, the same stack the original was built on.
 
@@ -31,14 +31,14 @@ New images: drop the file into `/public/images/...` and reference it as `"/image
 Section order: `components/HomePage.tsx` — reorder or comment out components.
 Brand colours / font sizes: `tailwind.config.ts`.
 
-### Translations
+### Language and sister sites
 
-The page is available in English (`/`), Korean (`/ko`), Thai (`/th`), Spanish (`/es`), Portuguese (`/pt`) and Japanese (`/ja`), switched from the globe menu in the header.
+This is the main, English-only EXPO 2026 site. The flags in the header link to the separate single-language sites:
 
-- English copy is the source, in `content/site.ts`.
-- Each language is a dictionary in `content/translations/<code>.ts`: the exact English text maps to its translation.
-- **When you change or add English text in `site.ts`, update the same key in every dictionary.** Missing or mismatched keys quietly fall back to English.
-- The main Register button on each translated page opens that language's monday.com form (Japanese uses the English form). Set in `content/i18n.ts`.
+- 🇹🇭 Thai site (Bangkok EXPO): `expo26-site-th`
+- 🇵🇭 Davao site (English, Davao EXPO): `expo26-site-davao`
+
+Their web addresses are in `sisterSites` in `content/site.ts`. Update them there if either site moves to its own domain.
 
 ## 3. Deploy to Vercel
 

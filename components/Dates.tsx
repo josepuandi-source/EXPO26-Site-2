@@ -14,11 +14,11 @@ type Recap = (typeof dates.recaps)[number];
 type Event = (typeof dates.events)[number];
 
 /** Tear-off calendar page: month on a coloured strip, big day number below. No date → blank calendar. */
-function CalendarBadge({ when, onTeal = false }: { when?: string; onTeal?: boolean }) {
+function CalendarBadge({ when, onTeal = false, muted = false }: { when?: string; onTeal?: boolean; muted?: boolean }) {
   const lang = useLang();
   const { ui } = useContent();
-  const strip = onTeal ? "bg-navy-900 text-white" : "bg-primary-700 text-white";
-  const frame = `w-16 shrink-0 overflow-hidden rounded-[10px] bg-white text-center font-heading leading-none ${onTeal ? "shadow-[0_6px_16px_rgba(18,17,15,.25)]" : "border border-primary-100"}`;
+  const strip = muted ? "bg-neutral-400 text-white" : onTeal ? "bg-navy-900 text-white" : "bg-primary-700 text-white";
+  const frame = `w-16 shrink-0 overflow-hidden rounded-[10px] bg-white text-center font-heading leading-none ${onTeal ? "shadow-[0_6px_16px_rgba(18,17,15,.25)]" : muted ? "border border-neutral-200" : "border border-primary-100"}`;
   if (!when) {
     return (
       <div className={frame} role="img" aria-label={ui.comingSoon}>
@@ -31,13 +31,11 @@ function CalendarBadge({ when, onTeal = false }: { when?: string; onTeal?: boole
   }
   // Fixed UTC so the server and every visitor's browser show the same day.
   const d = new Date(`${when}T00:00:00Z`);
-  const short = new Intl.DateTimeFormat(lang, { month: "short", timeZone: "UTC" }).format(d);
-  // "dez." -> "DEZ" for Spanish/Portuguese; Thai keeps its stops ("พ.ย.").
-  const month = lang === "es" || lang === "pt" ? short.replace(/\.$/, "") : short;
+  const month = new Intl.DateTimeFormat(lang, { month: "short", timeZone: "UTC" }).format(d);
   return (
     <div className={frame} aria-hidden="true">
       <div className={`py-1 text-[11px] font-medium uppercase tracking-[0.08em] ${strip}`}>{month}</div>
-      <div className="py-1.5 text-[26px] font-semibold text-primary-700">{d.getUTCDate()}</div>
+      <div className={`py-1.5 text-[26px] font-semibold ${muted ? "text-neutral-400" : "text-primary-700"}`}>{d.getUTCDate()}</div>
     </div>
   );
 }
@@ -132,10 +130,31 @@ function FeaturedEvent({ e }: { e: Event }) {
   );
 }
 
-/** Compact row with a number badge, like the U&I site's event list. */
+/** Compact row with a calendar badge, like the U&I site's event list. Past events are greyed out and inert. */
 function EventRow({ e }: { e: Event }) {
   const { ui } = useContent();
   const openPoster = useOpenPoster();
+  if (e.past) {
+    return (
+      <div
+        aria-disabled="true"
+        className="grid cursor-default select-none grid-cols-[64px_1fr] items-center gap-4 rounded-[14px] border border-neutral-200 bg-neutral-100 px-4 py-3.5 opacity-70 grayscale"
+      >
+        <CalendarBadge when={e.when} muted />
+        <div className="min-w-0">
+          <div className="flex flex-wrap items-center gap-2">
+            <h4 className="font-heading text-[17px] font-medium text-neutral-600">{e.city}</h4>
+            <span className="rounded-full bg-neutral-200 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.06em] text-neutral-600">
+              {ui.completed}
+            </span>
+          </div>
+          <p className="text-sm text-neutral-400">
+            {e.date} · {e.location}
+          </p>
+        </div>
+      </div>
+    );
+  }
   const body = (
     <>
       <CalendarBadge when={e.when} />
@@ -164,7 +183,11 @@ function EventRow({ e }: { e: Event }) {
 
 export default function Dates() {
   const { dates } = useContent();
-  const [featured, ...rest] = dates.events;
+  // Next upcoming event is featured; the other upcoming ones follow, then completed events.
+  const upcoming = dates.events.filter((e) => !e.past);
+  const done = dates.events.filter((e) => e.past);
+  const [featured, ...rest] = upcoming;
+  const rows = [...rest, ...done];
   return (
     <section id="dates" className="bg-[linear-gradient(0deg,rgba(0,156,145,.05)_0%,#FFFDFA_100%)] py-20 md:py-[88px]">
       <PosterViewer>
@@ -176,7 +199,7 @@ export default function Dates() {
             <div className="mb-14 grid grid-cols-1 gap-4 lg:grid-cols-[1.2fr_1fr]">
               {featured && <FeaturedEvent e={featured} />}
               <div className="flex flex-col gap-3">
-                {rest.map((e) => (
+                {rows.map((e) => (
                   <EventRow key={e.city} e={e} />
                 ))}
               </div>

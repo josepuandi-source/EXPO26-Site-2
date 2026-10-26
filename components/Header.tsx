@@ -3,11 +3,10 @@
 import Image from "next/image";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { useContent, useLang } from "./ContentProvider";
-import { langHref, locales } from "@/content/i18n";
+import { useContent } from "./ContentProvider";
 import { tel } from "@/content/site";
 import { Container } from "./ui";
-import { MenuIcon, CloseIcon, PhoneIcon, MailIcon } from "./icons";
+import { MenuIcon, CloseIcon, PhoneIcon, MailIcon, FlagTH, FlagPH } from "./icons";
 
 /** Official white U&I Global Australia logo for the teal bar. */
 function Wordmark({ small = false }: { small?: boolean }) {
@@ -23,32 +22,28 @@ function Wordmark({ small = false }: { small?: boolean }) {
   );
 }
 
-/** Inline language links, as on the U&I site's top strip. */
-function Langs({ onDark = true }: { onDark?: boolean }) {
-  const { ui } = useContent();
-  const lang = useLang();
+/** Flag links to the separate Thai and Davao EXPO sites (top strip and mobile menu). */
+function SisterSites({ onDark = true }: { onDark?: boolean }) {
+  const { sisterSites } = useContent();
   return (
-    <nav aria-label={ui.language} className="flex flex-wrap gap-0.5">
-      {locales.map((l) => (
-        <a
-          key={l.code}
-          href={langHref(l.code)}
-          hrefLang={l.code}
-          lang={l.code}
-          aria-current={l.code === lang ? "true" : undefined}
-          className={`rounded-md px-2 py-1 transition-colors ${
-            onDark
-              ? l.code === lang
-                ? "bg-white/15 font-semibold text-white"
-                : "text-[#D8D4CC] hover:text-white"
-              : l.code === lang
-                ? "bg-white/20 font-semibold text-white"
-                : "text-white/80 hover:text-white"
-          }`}
-        >
-          {l.label}
-        </a>
-      ))}
+    <nav aria-label="EXPO 2026 websites" className="flex flex-wrap items-center gap-1">
+      {sisterSites.map((s) => {
+        const Flag = s.flag === "th" ? FlagTH : FlagPH;
+        return (
+          <a
+            key={s.href}
+            href={s.href}
+            lang={s.lang}
+            title={s.title}
+            className={`inline-flex items-center gap-1.5 rounded-md px-2 py-1 font-medium transition-colors ${
+              onDark ? "text-[#D8D4CC] hover:bg-white/10 hover:text-white" : "text-white/90 hover:bg-white/15 hover:text-white"
+            }`}
+          >
+            <Flag className="h-3.5 w-auto rounded-[2px] shadow-[0_0_0_1px_rgba(255,255,255,.25)]" />
+            {s.label}
+          </a>
+        );
+      })}
     </nav>
   );
 }
@@ -72,7 +67,7 @@ export default function Header() {
                 {footer.contact.email}
               </a>
             </div>
-            <Langs />
+            <SisterSites />
           </div>
         </Container>
       </div>
@@ -144,7 +139,7 @@ export default function Header() {
           ))}
         </nav>
         <div className="border-t border-white/20 p-4 text-sm">
-          <Langs onDark={false} />
+          <SisterSites onDark={false} />
           <a
             href={nav.cta.href}
             onClick={() => setOpen(false)}
