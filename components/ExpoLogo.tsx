@@ -3,20 +3,22 @@
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 
-// The logo is split into four transparent layers, each the full 384×230 canvas,
+// The logo is split into transparent layers, each the full 1920×1150 canvas,
 // so they stack back into the exact artwork and can be animated separately.
+// Australia, EXP and the globe are high-res WebP; the STUDY • MIGRATION artwork is the older PNG.
 const SRC = "/images/expo-logo";
-const W = 384;
-const H = 230;
+const W = 1920;
+const H = 1150;
+const SIZES = "(min-width: 768px) 460px, 90vw";
 // Globe bounding box inside the canvas (px) — used for its spin origin and the shine.
-const GLOBE = { x: 260, y: 135, w: 87, h: 87 };
+const GLOBE = { x: 1320, y: 647, w: 448, h: 448 };
 const pct = (v: number, of: number) => `${(v / of) * 100}%`;
 const globeOrigin = `${pct(GLOBE.x + GLOBE.w / 2, W)} ${pct(GLOBE.y + GLOBE.h / 2, H)}`;
 
 const ease = [0.65, 0, 0.35, 1] as const;
 
 function Layer({ name }: { name: string }) {
-  return <Image src={`${SRC}/${name}.png`} alt="" width={W} height={H} priority className="absolute inset-0 h-full w-full" />;
+  return <Image src={`${SRC}/${name}.${name === "study" ? "png" : "webp"}`} alt="" width={W} height={H} sizes={SIZES} priority className="absolute inset-0 h-full w-full" />;
 }
 
 /**
@@ -24,15 +26,45 @@ function Layer({ name }: { name: string }) {
  * the script writes itself on, the strapline spreads out, EXP rises,
  * then the globe rolls in to become the O. A soft shine sweeps the globe afterwards.
  */
-export default function ExpoLogo({ alt, className = "" }: { alt: string; className?: string }) {
+export default function ExpoLogo({
+  alt,
+  className = "",
+  strap,
+  strapClass = "font-normal",
+  strapStyle,
+}: {
+  alt: string;
+  className?: string;
+  strap?: string;
+  strapClass?: string;
+  strapStyle?: React.CSSProperties;
+}) {
   const reduce = useReducedMotion();
 
+  // Text strapline drawn in place of the low-res "STUDY • MIGRATION" artwork, so it stays crisp.
+  const strapText = strap && (
+    <span
+      className={`absolute inset-x-0 text-center font-heading leading-none text-white whitespace-nowrap ${strapClass}`}
+      style={{ top: "41.5%", fontSize: "7.2cqw", ...strapStyle }}
+    >
+      {strap}
+    </span>
+  );
+
   if (reduce) {
-    return <Image src={`${SRC}/full.png`} alt={alt} width={W} height={H} priority className={`h-auto ${className}`} />;
+    if (!strap) return <Image src={`${SRC}/full.webp`} alt={alt} width={W} height={H} sizes={SIZES} priority className={`h-auto ${className}`} />;
+    return (
+      <div role="img" aria-label={alt} className={`relative ${className}`} style={{ aspectRatio: `${W} / ${H}`, containerType: "inline-size" }}>
+        {["australia", "exp", "globe"].map((n) => (
+          <Layer key={n} name={n} />
+        ))}
+        {strapText}
+      </div>
+    );
   }
 
   return (
-    <div role="img" aria-label={alt} className={`relative ${className}`} style={{ aspectRatio: `${W} / ${H}` }}>
+    <div role="img" aria-label={alt} className={`relative ${className}`} style={{ aspectRatio: `${W} / ${H}`, containerType: "inline-size" }}>
       {/* 1. "Australia" brush script writes on left to right */}
       <motion.div
         className="absolute inset-0"
@@ -51,7 +83,7 @@ export default function ExpoLogo({ alt, className = "" }: { alt: string; classNa
         transition={{ duration: 0.7, ease: "easeOut", delay: 1.05 }}
         style={{ transformOrigin: "45% 49%" }}
       >
-        <Layer name="study" />
+        {strap ? strapText : <Layer name="study" />}
       </motion.div>
 
       {/* 3. EXP rises into place */}

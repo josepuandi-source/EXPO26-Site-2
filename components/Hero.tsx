@@ -42,7 +42,13 @@ export default function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        <ExpoLogo alt={hero.logo.alt} className="w-60 md:w-[300px]" />
+        <ExpoLogo
+          alt={hero.logo.alt}
+          strap="STUDY • MIGRATION"
+          strapClass="font-light uppercase"
+          strapStyle={{ top: "41.6%", fontSize: "8.4cqw", letterSpacing: "0.03em" }}
+          className="w-60 md:w-[300px]"
+        />
         <span className="font-heading text-sm font-medium uppercase tracking-[0.22em] text-primary-300">{hero.eyebrow}</span>
         <h1 className="font-heading text-[clamp(38px,6vw,64px)] font-semibold leading-[1.08]">
           {hero.titleLead} <span className="text-primary-300">{hero.titleHighlight}</span>

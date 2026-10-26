@@ -56,7 +56,7 @@ export const nav = {
 // Hero
 // ---------------------------------------------------------------------------
 export const hero = {
-  logo: { src: "/images/expo-logo/full.png", alt: "Australia Study Migration Expo 2026" },
+  logo: { src: "/images/expo-logo/full.webp", alt: "Australia Study Migration Expo 2026" },
   /** Looping, muted background video (key moments from the Brisbane EXPO film) and the still shown before it loads. */
   video: "/videos/hero-loop.mp4",
   background: "/images/hero-poster.jpg",
