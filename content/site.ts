@@ -174,7 +174,7 @@ export const dates = {
    */
   events: [
     { when: "2026-11-28", date: "28 November 2026", city: "BANGKOK", location: "Bangkok", poster: "/images/expo-poster-bangkok-nov.jpg" },
-    { when: "2026-12-05", date: "5 December 2026", city: "DAVAO", location: "Davao, Philippines" },
+    { when: "2026-12-05", date: "5 December 2026", city: "DAVAO", location: "Davao, Philippines", poster: "/images/expo-poster-davao.jpg" },
     { when: "2026-12-17", date: "17 December 2026", city: "GOLD COAST", location: "Gold Coast" },
     { when: "2026-10-15", date: "15 October 2026", city: "BRISBANE", location: "Brisbane", past: true },
     { when: "2026-10-01", date: "1 October 2026", city: "MELBOURNE", location: "Melbourne", past: true },

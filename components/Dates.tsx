@@ -163,21 +163,33 @@ function EventRow({ e }: { e: Event }) {
         <p className="text-sm text-navy-300">
           {e.date} · {e.location}
         </p>
+        {e.poster && (
+          <span className="mt-1 inline-flex items-center gap-1.5 font-heading text-[13px] font-medium tracking-[0.04em] text-primary-700">
+            <ImageIcon className="h-3.5 w-3.5" />
+            {ui.viewPoster}
+          </span>
+        )}
       </div>
+      {/* Poster thumbnail, tilted like the featured card's pinned poster */}
+      {e.poster && (
+        <span className="block w-14 rotate-3 rounded-md bg-white p-1 shadow-[0_4px_12px_rgba(18,17,15,.2)] transition-transform duration-300 group-hover:rotate-0 group-hover:scale-105 sm:w-16">
+          <Image src={e.poster} alt="" width={128} height={181} className="h-auto w-full rounded-sm" />
+        </span>
+      )}
     </>
   );
   const cls =
-    "grid grid-cols-[64px_1fr] items-center gap-4 rounded-[14px] border border-neutral-200 bg-white px-4 py-3.5 text-navy-900 transition-colors";
+    "grid items-center gap-4 rounded-[14px] border border-neutral-200 bg-white px-4 py-3.5 text-navy-900 transition-colors";
   return e.poster ? (
     <button
       type="button"
       onClick={() => openPoster({ src: e.poster!, alt: `${e.city} ${ui.posterAlt}` })}
-      className={`${cls} w-full text-left hover:border-primary-500`}
+      className={`${cls} group w-full grid-cols-[64px_1fr_auto] text-left hover:border-primary-500`}
     >
       {body}
     </button>
   ) : (
-    <div className={cls}>{body}</div>
+    <div className={`${cls} grid-cols-[64px_1fr]`}>{body}</div>
   );
 }
 
