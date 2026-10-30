@@ -12,7 +12,7 @@ const { seo } = getContent(SITE_LANG);
 export const metadata: Metadata = {
   title: seo.title,
   description: seo.description,
-  icons: { icon: "/favicon.ico" },
+  icons: { icon: "/favicon.ico?v=2" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
