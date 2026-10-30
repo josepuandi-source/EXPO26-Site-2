@@ -18,6 +18,7 @@ const subscribeReducedMotion = (cb: () => void) => {
  * Full-bleed looping video hero with the U&I ink-to-teal overlay, centred copy and pill buttons.
  * `underConstruction` shows it on its own (the /under-construction page): a notice badge on top,
  * and no "Learn More", since the sections it scrolls to aren't on that page.
+ * The registration buttons (Claim Your Free Ticket and the language Register buttons) are off for now.
  */
 export default function Hero({ underConstruction = false }: { underConstruction?: boolean }) {
   const { hero, ui } = useContent();
@@ -66,30 +67,14 @@ export default function Hero({ underConstruction = false }: { underConstruction?
         <p className="max-w-[680px] font-heading text-[clamp(18px,2.2vw,24px)] font-light leading-snug text-white/90">{hero.intro}</p>
         <p className="text-[13px] uppercase leading-loose tracking-[0.22em] text-white/90">{hero.cities_line}</p>
         {underConstruction && <p className="max-w-[560px] text-[15px] leading-relaxed text-white/85">{ui.underConstructionNote}</p>}
-        <div className="mt-2 flex flex-wrap justify-center gap-3.5">
-          <Button href={hero.primaryCta.href} size="lg" external>
-            {hero.primaryCta.label}
-          </Button>
-          {!underConstruction && (
+        {/* Registration buttons are hidden for now; "Learn More" stays on the full site */}
+        {!underConstruction && (
+          <div className="mt-2 flex flex-wrap justify-center gap-3.5">
             <Button href={hero.secondaryCta.href} variant="ghost" size="lg">
               {hero.secondaryCta.label}
             </Button>
-          )}
-        </div>
-
-        <div id="register-buttons" className="mt-6 flex flex-wrap justify-center gap-2">
-          {hero.languageButtons.map((b) => (
-            <a
-              key={b.label}
-              href={b.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-10 items-center rounded-full border-[1.5px] border-white/40 bg-white/5 px-4 text-sm font-semibold text-white backdrop-blur-sm transition-colors hover:border-white hover:bg-white hover:text-primary-700"
-            >
-              {b.label}
-            </a>
-          ))}
-        </div>
+          </div>
+        )}
       </motion.div>
     </section>
   );
