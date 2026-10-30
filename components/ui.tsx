@@ -98,6 +98,7 @@ export function Button({
   size = "md",
   className = "",
   external = false,
+  onClick,
 }: {
   href: string;
   children: ReactNode;
@@ -105,10 +106,12 @@ export function Button({
   size?: keyof typeof sizes;
   className?: string;
   external?: boolean;
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 }) {
   return (
     <a
       href={href}
+      onClick={onClick}
       className={`${base} ${variants[variant]} ${sizes[size]} ${className}`}
       {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
     >

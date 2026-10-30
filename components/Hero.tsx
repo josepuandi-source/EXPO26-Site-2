@@ -15,9 +15,24 @@ const subscribeReducedMotion = (cb: () => void) => {
 };
 
 /**
+ * Arrived from another EXPO site (Bangkok, Davao…)? Go back to it. Otherwise follow the link,
+ * which falls back to the Bangkok site.
+ */
+function backToPreviousExpo(e: React.MouseEvent<HTMLAnchorElement>) {
+  try {
+    const from = new URL(document.referrer);
+    if (from.host !== window.location.host && /expo26/.test(from.host) && window.history.length > 1) {
+      e.preventDefault();
+      window.history.back();
+    }
+  } catch {
+    // No referrer: follow the link
+  }
+}
+
+/**
  * Full-bleed looping video hero with the U&I ink-to-teal overlay, centred copy and pill buttons.
- * `underConstruction` shows it on its own (the /under-construction page): a notice badge on top,
- * and no "Learn More", since the sections it scrolls to aren't on that page.
+ * `underConstruction` shows it on its own (the /under-construction page) with a notice badge on top.
  * The registration buttons (Claim Your Free Ticket and the language Register buttons) are off for now.
  */
 export default function Hero({ underConstruction = false }: { underConstruction?: boolean }) {
@@ -67,14 +82,12 @@ export default function Hero({ underConstruction = false }: { underConstruction?
         <p className="max-w-[680px] font-heading text-[clamp(18px,2.2vw,24px)] font-light leading-snug text-white/90">{hero.intro}</p>
         <p className="text-[13px] uppercase leading-loose tracking-[0.22em] text-white/90">{hero.cities_line}</p>
         {underConstruction && <p className="max-w-[560px] text-[15px] leading-relaxed text-white/85">{ui.underConstructionNote}</p>}
-        {/* Registration buttons are hidden for now; "Learn More" stays on the full site */}
-        {!underConstruction && (
-          <div className="mt-2 flex flex-wrap justify-center gap-3.5">
-            <Button href={hero.secondaryCta.href} variant="ghost" size="lg">
-              {hero.secondaryCta.label}
-            </Button>
-          </div>
-        )}
+        {/* Registration buttons are hidden for now; this takes visitors back to the EXPO site they came from */}
+        <div className="mt-2 flex flex-wrap justify-center gap-3.5">
+          <Button href={hero.secondaryCta.href} variant="ghost" size="lg" onClick={backToPreviousExpo}>
+            {hero.secondaryCta.label}
+          </Button>
+        </div>
       </motion.div>
     </section>
   );
