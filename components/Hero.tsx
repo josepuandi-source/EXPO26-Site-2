@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { useContent } from "./ContentProvider";
 import { Button } from "./ui";
 import ExpoLogo from "./ExpoLogo";
+import AwardSeal from "./AwardSeal";
 
 const reducedMotionQuery = "(prefers-reduced-motion: reduce)";
 const subscribeReducedMotion = (cb: () => void) => {
@@ -32,7 +33,8 @@ function backToPreviousExpo(e: React.MouseEvent<HTMLAnchorElement>) {
 
 /**
  * Full-bleed looping video hero with the U&I ink-to-teal overlay, centred copy and pill buttons.
- * `underConstruction` shows it on its own (the /under-construction page) with a notice badge on top.
+ * `underConstruction` shows it on its own (the /under-construction page) with a notice badge on top
+ * and the 29-year award seal in the corner.
  * The registration buttons (Claim Your Free Ticket and the language Register buttons) are off for now.
  */
 export default function Hero({ underConstruction = false }: { underConstruction?: boolean }) {
@@ -56,8 +58,10 @@ export default function Hero({ underConstruction = false }: { underConstruction?
       )}
       <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(315deg,rgba(18,17,15,.72)_40%,rgba(0,125,116,.68)_100%)]" />
 
+      {underConstruction && <AwardSeal trust={hero.trust} seal={hero.trustSeal} titleClassName="text-primary-900" iconClassName="text-primary-700" />}
+
       <motion.div
-        className={`relative z-10 flex max-w-[880px] flex-col items-center gap-5 px-5 ${underConstruction ? "py-16" : "py-24"}`}
+        className={`relative z-10 flex max-w-[880px] flex-col items-center gap-5 px-5 ${underConstruction ? "pb-16 pt-32" : "py-24"}`}
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}

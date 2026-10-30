@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import AwardSeal from "@/components/AwardSeal";
 
 export const metadata: Metadata = {
   title: "Australia Study & Migration EXPO 2026 · Davao City – Coming soon | U&I Global",
@@ -7,6 +8,10 @@ export const metadata: Metadata = {
 };
 
 const ART = "/images/davao";
+
+// Official-agent award, as on the Davao site's hero
+const TRUST = ["Australia State Government Official Agent", "Since 1997 · 29 Years Experience & Trust"];
+const SEAL = { number: "29", label: "Years" };
 
 // The Davao poster's blue sky, laid over the top of the Sydney photo (as on the Davao site's hero).
 const skyFade = "linear-gradient(180deg, #6CA9DF 0%, rgba(150,194,234,.8) 22%, rgba(255,236,196,.3) 52%, rgba(255,241,207,0) 72%)";
@@ -38,7 +43,14 @@ export default function DavaoComingSoon() {
         </div>
       </header>
 
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl flex-1 grid-cols-1 items-end gap-2 px-4 pt-10 sm:px-6 lg:grid-cols-[1.15fr_1fr] lg:px-8">
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl flex-1 grid-cols-1 items-end gap-2 px-4 pt-28 sm:px-6 md:pt-10 lg:grid-cols-[1.15fr_1fr] lg:px-8">
+        <AwardSeal
+          trust={TRUST}
+          seal={SEAL}
+          titleClassName="text-[#033D60]"
+          iconClassName="text-[#045584]"
+          className="absolute right-4 top-4 z-20 sm:right-6 lg:right-8 lg:top-6"
+        />
         <div className="flex flex-col items-center pb-10 text-center lg:items-start lg:self-center lg:pb-16 lg:text-left">
           <span className="inline-flex items-center gap-2 rounded-full bg-[#F7C548] px-4 py-1.5 font-heading text-sm font-bold uppercase tracking-[0.18em] text-[#0D1F3A] shadow-[0_6px_16px_rgba(120,85,10,.25)]">
             <span className="h-2 w-2 animate-pulse rounded-full bg-[#045584]" />

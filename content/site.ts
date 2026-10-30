@@ -82,6 +82,9 @@ export const hero = {
     "Join us at the 2026 Australia Study & Migration Expo. Free 1-on-1 consultations with University, TAFE, and College representatives and migration experts.",
   cities_line: "Brisbane · Gold Coast · Melbourne · Bangkok · Davao",
   primaryCta: { label: "Claim Your Free Ticket", href: forms.english },
+  /** Official-agent award (seal + banner), shown on the under-construction page. */
+  trust: ["Australia State Government Official Agent", "Since 1997 · 29 Years Experience & Trust"],
+  trustSeal: { number: "29", label: "Years" },
   secondaryCta: { label: "Return to Previous EXPO Site", href: "https://expo26-bkk.uandiedu.com" },
   /** Language registration buttons under the hero. hoverText = "navy" | "teal". */
   languageButtons: [
