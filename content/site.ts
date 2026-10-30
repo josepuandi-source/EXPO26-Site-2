@@ -487,6 +487,8 @@ export const ui = {
   completed: "Completed",
   benefitNo: "Benefit Nº",
   viewPoster: "View Poster",
+  underConstruction: "Under construction",
+  underConstructionNote: "The full English website is on its way. In the meantime you can register for free below.",
   posterAlt: "Expo Poster",
   promoAlt: "Upcoming EXPO promo",
   playVideo: "Play video:",
