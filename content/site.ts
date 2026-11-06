@@ -475,8 +475,8 @@ export const tel = (p: string) => "tel:" + p.replace(/[^+\d]/g, "");
 // Sister sites — flag links in the header to the single-language EXPO sites
 // ---------------------------------------------------------------------------
 export const sisterSites = [
-  { flag: "th", label: "ภาษาไทย", title: "EXPO 2026 Bangkok — Thai website", href: "https://expo26-site-th.vercel.app", lang: "th" },
-  { flag: "ph", label: "Davao", title: "EXPO 2026 Davao (coming soon)", href: "/davao", lang: "en" },
+  { flag: "th", label: "ภาษาไทย", title: "EXPO 2026 Bangkok — Thai website", href: "https://expo26-bkk.uandiedu.com", lang: "th" },
+  { flag: "ph", label: "Davao", title: "EXPO 2026 Davao", href: "https://expo26-davao.uandiedu.com", lang: "en" },
 ] as { flag: "th" | "ph"; label: string; title: string; href: string; lang: string }[];
 
 // ---------------------------------------------------------------------------
