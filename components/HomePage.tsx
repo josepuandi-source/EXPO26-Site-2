@@ -25,7 +25,7 @@ export default function HomePage({ lang }: { lang: Lang }) {
         <Dates />
         <WhyAttend />
         {/* <Pathways />  hidden for now */}
-        <Benefits />
+        {/* <Benefits />  hidden for now */}
         <Videos />
         <About />
         <Partner />
