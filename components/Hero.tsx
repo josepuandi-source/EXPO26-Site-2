@@ -7,6 +7,7 @@ import { useContent } from "./ContentProvider";
 import { Button } from "./ui";
 import ExpoLogo from "./ExpoLogo";
 import AwardSeal from "./AwardSeal";
+import { FlagTH, FlagPH } from "./icons";
 
 const reducedMotionQuery = "(prefers-reduced-motion: reduce)";
 const subscribeReducedMotion = (cb: () => void) => {
@@ -14,22 +15,6 @@ const subscribeReducedMotion = (cb: () => void) => {
   mq.addEventListener("change", cb);
   return () => mq.removeEventListener("change", cb);
 };
-
-/**
- * Arrived from another EXPO site (Bangkok, Davao…)? Go back to it. Otherwise follow the link,
- * which falls back to the Bangkok site.
- */
-function backToPreviousExpo(e: React.MouseEvent<HTMLAnchorElement>) {
-  try {
-    const from = new URL(document.referrer);
-    if (from.host !== window.location.host && /expo26/.test(from.host) && window.history.length > 1) {
-      e.preventDefault();
-      window.history.back();
-    }
-  } catch {
-    // No referrer: follow the link
-  }
-}
 
 /**
  * Full-bleed looping video hero with the U&I ink-to-teal overlay, centred copy and pill buttons.
@@ -86,11 +71,22 @@ export default function Hero({ underConstruction = false }: { underConstruction?
         <p className="max-w-[680px] font-heading text-[clamp(18px,2.2vw,24px)] font-light leading-snug text-white/90">{hero.intro}</p>
         <p className="text-[13px] uppercase leading-loose tracking-[0.22em] text-white/90">{hero.cities_line}</p>
         {underConstruction && <p className="max-w-[560px] text-[15px] leading-relaxed text-white/85">{ui.underConstructionNote}</p>}
-        {/* Registration buttons are hidden for now; this takes visitors back to the EXPO site they came from */}
-        <div className="mt-2 flex flex-wrap justify-center gap-3.5">
-          <Button href={hero.secondaryCta.href} variant="ghost" size="lg" onClick={backToPreviousExpo}>
-            {hero.secondaryCta.label}
-          </Button>
+        {/* Registration buttons are hidden for now; these point to the city EXPO websites */}
+        <div className="mt-3 flex flex-col items-center gap-3">
+          <p className="font-heading text-sm font-medium uppercase tracking-[0.2em] text-white/85">{hero.nextExpos.label}</p>
+          <div className="flex flex-wrap justify-center gap-3.5">
+            {hero.nextExpos.sites.map((s) => {
+              const Flag = s.flag === "th" ? FlagTH : FlagPH;
+              return (
+                <Button key={s.href} href={s.href} variant="ghost" size="lg" className="gap-3">
+                  <Flag className="h-4 w-auto rounded-[2px] shadow-[0_0_0_1px_rgba(255,255,255,.35)]" />
+                  <span>
+                    {s.city} <span className="font-light opacity-80">· {s.date}</span>
+                  </span>
+                </Button>
+              );
+            })}
+          </div>
         </div>
       </motion.div>
     </section>

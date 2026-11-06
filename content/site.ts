@@ -46,7 +46,6 @@ export const nav = {
   mobile: [
     { label: "Why Attend", href: "#why-attend" },
     { label: "Schedule", href: "#schedule" },
-    { label: "Pathways", href: "#pathways" },
     { label: "Register", href: "#hero" },
   ],
   cta: { label: "Register for Free", href: "#hero" },
@@ -85,7 +84,14 @@ export const hero = {
   /** Official-agent award (seal + banner), shown on the under-construction page. */
   trust: ["Australia State Government Official Agent", "Since 1997 · 29 Years Experience & Trust"],
   trustSeal: { number: "29", label: "Years" },
-  secondaryCta: { label: "Return to Previous EXPO Site", href: "https://expo26-bkk.uandiedu.com" },
+  /** Buttons to the city EXPO websites, under "Find the next EXPO coming to you". */
+  nextExpos: {
+    label: "Find the next EXPO coming to you",
+    sites: [
+      { flag: "th", city: "Bangkok", date: "28 Nov 2026", href: "https://expo26-bkk.uandiedu.com", lang: "th" },
+      { flag: "ph", city: "Davao City", date: "5 Dec 2026", href: "https://expo26-davao.uandiedu.com", lang: "en" },
+    ] as { flag: "th" | "ph"; city: string; date: string; href: string; lang: string }[],
+  },
   /** Language registration buttons under the hero. hoverText = "navy" | "teal". */
   languageButtons: [
     { label: "Register Now", href: forms.english, hoverText: "navy" },
@@ -307,49 +313,42 @@ export const about = {
 // Why partner
 // ---------------------------------------------------------------------------
 export const partner = {
-  title: "Why Partner with U&I Global",
-  subtitle: "Three decades of accountability. Five credentials every family, institution, and government partner can verify.",
-  flagship: {
-    kicker: "Nº 01 · Flagship Credential",
-    titleLines: ["An Australian", "Government–Registered"],
-    titleHighlight: "Company.",
-    text: "U&I Global is a wholly-registered Australian corporation. Not a franchise, not a representative office. That registration backs every scholarship, visa filing, and enrollment we handle.",
-    seal: { top: "Registered", year: "1997", bottom: "Established", foot: "Australia · Wholly-Owned" },
-  },
-  /** icon: "shield" | "building" | "academic" | "badge" */
+  title: "Why do students and parents choose U&I Global Australia?",
   items: [
-    { no: "02", icon: "shield", title: "3 Decades of Trust", text: "Since 1997, guiding students across seven markets worldwide." },
-    { no: "03", icon: "building", title: "100% Fully-Owned", text: "Wholly-owned offices in every market we operate. No local licensees." },
-    { no: "04", icon: "academic", title: "Australian Education Specialist", text: "Focused exclusively on Australian universities, TAFEs and pathway providers." },
-    { no: "05", icon: "badge", title: "Strict Quality Assurance", text: "Documented QA review on every application. No shortcuts, no surprises." },
-  ] as { no: string; icon: "shield" | "building" | "academic" | "badge"; title: string; text: string }[],
+    { emoji: "🇦🇺", text: "Head Office based in Australia with branches in Thailand, the Philippines, Korea and Mongolia" },
+    { emoji: "🏢", text: "Registered Australian company operating for nearly 30 years" },
+    { emoji: "🎓", text: "An officially accredited education agent for universities, TAFEs and Education Queensland International (EQI) institutions" },
+    { emoji: "⭐", text: "Almost 30 years, since 1997, looking after students from around the world coming to Australia" },
+    { emoji: "✈️", text: "Looking after students in their study journey from their home country all the way to Australia" },
+    { emoji: "🤝", text: "Free study consultations with our specialised team" },
+  ],
 };
 
 // ---------------------------------------------------------------------------
 // Your move to Australia
 // ---------------------------------------------------------------------------
 export const move = {
-  title: "Your Move to Australia",
-  subtitle: "Once you're enrolled, we stay with you, from the day you land to the week you settle in.",
+  title: "More Than Study",
+  subtitle: "We help you settle in Australia: U&I looks after you all the way through your journey.",
   phase1: {
     label: "Phase 01",
     title: "When You Arrive",
-    text: "Landing in a new country is the hardest part. We make sure the first 48 hours are taken care of.",
+    text: "Landing in a new country is the hardest part. We make sure your first days are taken care of.",
     /** iconBg: Tailwind background class for the icon tile */
     items: [
-      { icon: "/images/airplane.png", iconBg: "bg-primary-100", title: "Airport Pick-up", text: "Greeted on arrival and driven safely to your accommodation." },
-      { icon: "/images/house.png", iconBg: "bg-accent-100", title: "Homestay", text: "Trusted host families. A soft landing while you settle in." },
-      { icon: "/images/usim.png", iconBg: "bg-navy-100", title: "Arrival Services", text: "SIM cards, transit passes, orientation. The essentials, sorted." },
+      { icon: "/images/airplane.png", iconBg: "bg-primary-100", title: "Arrival Assistance", text: "Free airport pick-up, SIM cards, transport cards, opening a bank account and finding places near your home when you land." },
+      { icon: "/images/house.png", iconBg: "bg-accent-100", title: "Accommodation Support", text: "U&I Global team in Australia assists students with finding accommodation on arrival." },
+      { icon: "/images/card.png", iconBg: "bg-navy-100", title: "Life in Australia Guidance", text: "Advice on everyday life and the essential services you will need in Australia." },
     ],
   },
   phase2: {
     label: "Phase 02",
-    title: "Getting Settled",
-    text: "The paperwork that unlocks work, banking, and everyday life in Australia. Handled with you, step by step.",
+    title: "Building Your Life",
+    text: "Work, paperwork and new friends. We stay with you as you make Australia home.",
     items: [
-      { icon: "/images/money.png", iconBg: "bg-accent-500/20", title: "TFN", text: "Tax File Number. Required before you start working or open a bank account." },
-      { icon: "/images/money.png", iconBg: "bg-primary-500/25", title: "ABN", text: "Australian Business Number, for freelancing, contracting, or starting a side business." },
-      { icon: "/images/card.png", iconBg: "bg-white/15", title: "ID Card / CRN", text: "Customer Reference Number. Your gateway to Medicare and government services." },
+      { icon: "/images/money.png", iconBg: "bg-accent-500/20", title: "TFN / ABN Guidance", text: "Step-by-step help applying for your Tax File Number and Australian Business Number." },
+      { icon: "/images/briefcase.svg", iconBg: "bg-primary-500/25", title: "Job Search Support", text: "Assistance with job interviews with our partner network and U&I Alumni." },
+      { icon: "/images/people.svg", iconBg: "bg-white/15", title: "Student Community & Events", text: "Events at U&I offices in Australia where students meet, make friends and build connections." },
     ],
   },
 };
@@ -359,27 +358,120 @@ export const move = {
 // ---------------------------------------------------------------------------
 export const testimonials = {
   title: "What Our Students Say",
-  subtitle: "Real stories from students who achieved their Australian dream.",
+  subtitle: "Real reviews from students U&I has helped in Thailand, the Philippines and Australia.",
+  labels: { from: "From", service: "Service", consultant: "Consultant", course: "Course", school: "School", readMore: "Read more", source: "Review", showMore: "See more reviews", showLess: "Show fewer reviews", close: "Close" },
+  /**
+   * A mix of reviews from the Bangkok (Thai) and Davao (Philippines) EXPO sites, all in English.
+   * Thai reviews are translated; the originals are on the Bangkok site.
+   */
   items: [
     {
-      quote: "U&I Global made my dream of studying in Queensland a reality. Their team guided me through every step of the process, from choosing the right university to settling in.",
-      initials: "PS",
-      name: "Priya Sharma",
-      role: "International Student, UQ",
+      name: "Babylou C.",
+      from: "Philippines",
+      photo: "/images/reviews/ph/babylou.jpg",
+      service: "Visa application",
+      consultant: "Gaselle",
+      quote: "A huge thank you to U&I Global Australia Philippines, especially Gaselle, for making my visa journey so much easier. My application was lodged at the last minute, and it was a risky case because some supporting documents were still pending. Despite the challenges, Gaselle handled everything with professionalism, patience, and genuine care.\nI was beyond grateful when my visa was approved in just 10 days! Thank you for believing in my case and guiding me every step of the way. I highly recommend U&I Global Australia Philippines to anyone looking for reliable and dedicated migration support. 🙌✨",
     },
     {
-      quote: "The support I received from application to enrolment was exceptional and truly personalised. I always felt like they genuinely cared about my success.",
-      initials: "MC",
-      name: "Marco Chen",
-      role: "Graduate Student, Griffith",
+      name: "Potea",
+      from: "Thailand",
+      photo: "/images/reviews/th/student-potea.webp",
+      course: "Certificate IV in Kitchen Management, Diploma & Advanced Diploma of Hospitality Management",
+      school: "TAFE QLD / SBTA & SELA",
+      quote: "The U&I team gave me excellent service and advice, and they were so kind. I personally consulted with P'Tee, who looked after all my information. P'Tee always gave me the right advice and paid great attention to every detail. Thank you to the company and to P'Tee for caring so much about students. I'm truly not disappointed at all!",
     },
     {
-      quote: "I couldn't have navigated the visa process and university selection without their expert guidance. They made what felt impossible feel completely manageable.",
-      initials: "AJ",
-      name: "Amara Johnson",
-      role: "Undergraduate, QUT",
+      name: "Mary Joy P.",
+      from: "Philippines",
+      photo: "/images/reviews/ph/maryjoy.jpg",
+      service: "Student visa",
+      consultant: "Jose",
+      quote: "I had a great experience with U&I Agency for my student visa application. They made the entire process incredibly easy and stress-free. My agent, Jose, was fantastic—he was efficient, professional, and everything went through without any issues. The whole experience was fast and smooth. Thank you, U&I and Jose, for your great work!",
     },
-  ],
+    {
+      name: "Saipan Duangkamon",
+      from: "Thailand",
+      photo: "/images/reviews/th/student-saipan-v3.webp",
+      course: "General English",
+      school: "QAT",
+      quote: "I studied English at QAT, applying through U&I Global, so I wanted to share my real experience in case anyone is still deciding. I was very impressed with my agent, P'TT. She handled all my study documents, explained every step clearly, and there were no extra costs beyond what I was told. 😊\n\nThe school is quite relaxed. The teachers are native speakers and explain things in a way that's easy to understand. Classes aren't too big and my classmates come from many countries, so I get lots of chances to speak. My agent recommended this school, and it matched my goals perfectly ✅\n\nOverall, I recommend it for anyone who wants to learn English at a comfortable pace, or anyone on a Work and Holiday visa who wants to try studying before switching to a student visa like I did, and who wants an agent that looks after you closely. 🤩",
+    },
+    {
+      name: "Ain A.",
+      from: "Philippines",
+      photo: "/images/reviews/ph/ain.jpg",
+      service: "Student visa & PTE mock test",
+      consultant: "Suzzy",
+      quote: "My experience with U&I Global has been truly positive and beyond my expectations. I honestly didn't expect my application process to move so quickly. The agents were very hands-on, responsive, and always ready to answer my questions whenever I had concerns.\n\nThey also helped me improve my Genuine Student (GS) Statement, making sure my answers were clear, convincing, and well-supported. My documents were processed promptly but with great care and attention to detail. We went through several rounds of checking and rechecking to ensure that all information was accurate, consistent, and properly backed up by supporting documents.\n\nI really appreciate their patience, dedication, and guidance throughout my application journey. Their assistance made the process much smoother, less stressful, and more manageable. I am truly grateful to U&I Global for helping me take this important step toward achieving my dream of studying in Australia. Thank you for your excellent service and support!\n\nGood morning, Ma'am Suzzy! I sent you an email about my PTE score report from my 2nd retake yesterday, August 5. Thank you for offering the free mock exam, it really helped. 🥹",
+    },
+    {
+      name: "BB",
+      from: "Thailand",
+      photo: "/images/reviews/th/student-bb.webp",
+      course: "General English + IELTS Preparation",
+      school: "ILSC",
+      quote: "P'TT gave me great advice ☺️ There were so many schools to choose from, and preparing the documents was easy with no hassle at all. It wasn't stressful because she handled everything; I just had to prepare my documents and choose the school I wanted. My visa came through super fast 🎉✨ with no requests for extra documents. It was granted just 10 minutes after I applied! Thank you so much, P'Tee 🙏💖✨",
+    },
+    {
+      name: "Heaven S.",
+      from: "Philippines",
+      photo: "/images/reviews/ph/heaven.jpg",
+      service: "Visa application",
+      consultant: "Gaselle",
+      quote: "A very special thank you to Miss Gaselle for her patience and support throughout the whole process. She was always easy to reach out to and talk to whenever I had questions or needed guidance. I truly appreciate all the help she gave me every step of the way.\n\nImagine, I got it in only 3 weeks!\n\nIf you are looking for a visa agent, Miss Gaselle and U&I Philippines is definitely the place to go. Highly recommended! ⭐",
+    },
+    {
+      name: "Kamonrat Boonchuen",
+      from: "Thailand",
+      photo: "/images/reviews/th/student-kamonrat.webp",
+      course: "Master of Accounting",
+      school: "Kaplan Business School",
+      quote: "A huge thank you to N'Mookie and the U&I team! 💖 Mookie was super detailed and supportive with all the documents, making everything so easy for me. We submitted the application yesterday, and it got auto-granted today! 🎉 I'm so happy I chose this team — friendly, professional, and truly amazing at what they do. Highly recommended!",
+    },
+    {
+      name: "Johanna Charisse M.",
+      from: "Philippines",
+      photo: "/images/reviews/ph/johanna.jpg",
+      service: "Student visa",
+      consultant: "Gaselle",
+      quote: "A Rare, Genuine Gem 💎\n\nBack in 2023, I was just one of the many fresh international students—lost, unsure, and trying to find my place. When a friend invited me to a Study Expo by U&I, I said yes without even knowing how much I would need that moment later on.\n\nThat’s where I met Ma’am Gasselle—a petite, warm, and genuinely kind lady my friend introduced me to. Life surprised me with challenges that pushed me to my limits, and when I finally needed help from an education agent, the only name that came to mind was U&I… and Ma’am Gasselle.\n\nFrom having absolutely no clue about anything, she guided me through every step with patience and care. We went through many ups and downs during my visa process, yet not once did I doubt that she truly cares for the students she helps. She puts her heart into her work, and it shows in every conversation, every reminder, every effort she gives.\n\nIt is rare to find an agent who is truly genuine.\nAnd I feel blessed to have found one.\n\nHeartfelt. Practical. Reliable.\nThank you, Ma’am Gasselle, for everything.",
+    },
+    {
+      name: "Kelly",
+      from: "Thailand",
+      photo: "/images/reviews/th/student-kelly.webp",
+      course: "Bachelor of Psychological Science",
+      school: "Griffith University",
+      quote: "Thank you to the team for handling everything for me. My classmates come from many different countries. At first I thought there would only be international students, but there are actually lots of Australian students too. Exchanging ideas is fun and group work is easier. I feel I made the right choice to study overseas, and with the university's reputation I think it will really help my future.",
+    },
+    {
+      name: "Jade D.",
+      from: "Philippines",
+      photo: "/images/reviews/ph/jade.jpg",
+      service: "Visa application",
+      consultant: "Gaselle and Jose",
+      quote: "My sincere appreciation goes to the U and I Team for their remarkable service and assistance with my visa application.\n\nTheir dedication and expertise made a big difference in achieving a successful outcome. The team was responsive, supportive, and professional throughout the entire process.\n\nThank you for your valuable help and for making this journey much easier and more manageable.\n\nThank you too, Miss Gaselle and Sir Jose 🤗💕",
+    },
+    {
+      name: "Ginny",
+      from: "Thailand",
+      photo: "/images/reviews/th/student-ginny.webp",
+      course: "General English",
+      school: "Greenwich College",
+      quote: "Super grateful to U&I Global Brisbane, my visa just got approved! Big thanks to P'Tee for helping me through the whole process. She was so friendly, patient, and always there when I had questions. Made everything way less stressful. Really appreciate all the support from the team too. Highly recommend them if you're sorting out your visa!",
+    },
+  ] as {
+    name: string;
+    /** Country the student came from, shown as the first line under the name. */
+    from?: string;
+    photo?: string;
+    course?: string;
+    school?: string;
+    service?: string;
+    consultant?: string;
+    quote: string;
+  }[],
 };
 
 // ---------------------------------------------------------------------------
@@ -435,16 +527,26 @@ export const offices = {
   subtitle: "Get in touch with the U&I Global team in your region.",
   items: [
     { name: "Brisbane (Head Office)", phone: "+61 7 3270 7999", email: "information@uandiedu.com", address: "Level 3, 110 Mary St., Brisbane QLD 4000, Australia" },
-    { name: "Melbourne", phone: "+61 3 9639 6148", address: "Suite 202, Level 2, 517 Flinders Lane, Melbourne VIC 3000, Australia" },
-    { name: "Gold Coast", phone: "+61 421 000 060", address: "Level 1, Southport Central Commercial Tower 2, 2106/5 Lawson St., Southport QLD 4215, Australia" },
-    { name: "Seoul (Korea)", phone: "+82 10 4008 5126", address: "Digitally integrated operational office managed by U&I staff" },
-    { name: "Busan (Korea)", phone: "+82 10 4008 5126", address: "Level 9, 694 Jungang-daero, Busanjin-gu, Busan, Korea, 47216" },
-    { name: "Bangkok (Thailand)", phone: "+66 81 116 5186", address: "Samyan Mitrtown Office Tower, Floor 24, Mitrtown Office, 944 Rama IV Rd, Wang Mai, Pathum Wan, Bangkok 10330, Thailand" },
-    { name: "Davao (Philippines)", address: "2nd Floor, Lucita Building, P. Sobrecarey St corner Lapu-Lapu St, Davao City, 8000" },
-    { name: "Cebu (Philippines)", address: "Digitally integrated operational office managed by U&I staff" },
-    { name: "Iloilo (Philippines)", address: "Digitally integrated operational office managed by U&I staff" },
-    { name: "Manila (Philippines)", address: "Digitally integrated operational office managed by U&I staff" },
-  ] as { name: string; phone?: string; email?: string; address: string }[],
+    { name: "Melbourne", phone: "+61 3 9639 6148", email: "information@uandiedu.com", address: "Suite 202, Level 2, 517 Flinders Lane, Melbourne VIC 3000, Australia" },
+    { name: "Gold Coast", phone: "+61 421 000 060", email: "information@uandiedu.com", address: "Level 1, Southport Central Commercial Tower 2, 2106/5 Lawson St., Southport QLD 4215, Australia" },
+    { name: "Bangkok (Thailand)", phones: [{ number: "+66 81-116-5186", area: "Bangkok" }, { number: "+66 99-921-5899", area: "Chiang Mai" }], email: "information@uandiedu.com", address: "Samyan Mitrtown Office Tower, Floor 24, Mitrtown Office, 944 Rama IV Rd, Wang Mai, Pathum Wan, Bangkok 10330, Thailand" },
+    { name: "Davao (Philippines)", phone: "0961-039-7386", email: "information@uandiedu.com", address: "2nd Floor, Lucita Building, P. Sobrecarey St corner Lapu-Lapu St, Davao City, 8000" },
+    { name: "Cebu (Philippines)", email: "information@uandiedu.com", address: "Digitally integrated operational office managed by U&I staff" },
+    { name: "Iloilo (Philippines)", email: "information@uandiedu.com", address: "Digitally integrated operational office managed by U&I staff" },
+    { name: "Manila (Philippines)", email: "information@uandiedu.com", address: "Digitally integrated operational office managed by U&I staff" },
+    { name: "Seoul (Korea)", phone: "+82 10 4008 5126", email: "information@uandiedu.com", address: "Digitally integrated operational office managed by U&I staff" },
+    { name: "Busan (Korea)", phone: "+82 10 4008 5126", email: "information@uandiedu.com", address: "Level 9, 694 Jungang-daero, Busanjin-gu, Busan, Korea, 47216" },
+    { name: "Ulaanbaatar (Mongolia)", email: "information@uandiedu.com", address: "Digitally integrated operational office managed by U&I staff" },
+  ] as {
+    name: string;
+    phone?: string;
+    /** Several numbers, each labelled with its city. */
+    phones?: { number: string; area: string }[];
+    email?: string;
+    address?: string;
+    /** For a country card: the cities with a U&I office. */
+    cities?: string[];
+  }[],
 };
 
 // ---------------------------------------------------------------------------
@@ -452,11 +554,10 @@ export const offices = {
 // ---------------------------------------------------------------------------
 export const footer = {
   tagline: "Your trusted partner for Australian education & migration.",
-  trust: "Trusted by 5,000+ students worldwide",
+  trust: "Trusted by more than 30,000 students worldwide",
   links: [
     { label: "Why Attend", href: "#why-attend" },
     { label: "Schedule", href: "#schedule" },
-    { label: "Pathways", href: "#pathways" },
     { label: "Register", href: "#hero" },
   ],
   contact: {

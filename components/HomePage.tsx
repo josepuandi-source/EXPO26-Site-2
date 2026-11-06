@@ -6,7 +6,6 @@ import Hero from "./Hero";
 import Dates from "./Dates";
 import WhyAttend from "./WhyAttend";
 import Pathways from "./Pathways";
-import ExpoExclusive from "./ExpoExclusive";
 import Benefits from "./Benefits";
 import Videos from "./Videos";
 import About from "./About";
@@ -25,8 +24,7 @@ export default function HomePage({ lang }: { lang: Lang }) {
         <Hero />
         <Dates />
         <WhyAttend />
-        <Pathways />
-        <ExpoExclusive />
+        {/* <Pathways />  hidden for now */}
         <Benefits />
         <Videos />
         <About />
